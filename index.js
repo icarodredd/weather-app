@@ -1,25 +1,50 @@
 const apiKey = "lggfV8VXJWHnAYcHZKDEr1H1ivLx2DZy";
+const apiKey2 = "5a15c0c07481e9e769685d8376cf6569";
+
 const btnSearch = $("#search");
 const input = $("#input");
 const city = $("#city");
 const temperature = $("#celsius");
+const humidity = $("#humidity");
+const rain = $("#rain");
+const typeOfWeather = $("#type-of-weather");
+const img = $("#image");
 
-const ShowData = async (data) => {
-  console.log(data);
-  city.text(data.location.name);
-  const temp = Math.round(data.data.values.temperature);
+const changeImg = async (weather, rainProbability) => {
+  if (weather === "Clear") {
+    img.attr("src", "./images/sun.svg");
+  } else if (weather === "Clouds") {
+    img.attr("src", "./images/cloudy.svg");
+  } else if (rainProbability >= 50) {
+    img.attr("src", "./images/cloudy.svg");
+  }
+};
+
+const ShowData = async (data1, data2) => {
+  console.log(data1);
+  console.log(data2);
+  city.text(data1.location.name);
+  const temp = Math.round(data1.data.values.temperature);
   temperature.text(temp + "ºC");
+  humidity.text(`Humidity: ${data1.data.values.humidity} %`);
+  const rainProbability = data1.data.values.precipitationProbability;
+  rain.text(`Rain: ${rainProbability} %`);
+  const weather = data2.weather[0].main;
+  typeOfWeather.text(weather);
+  changeImg(weather, rainProbability);
 };
 
 const weatherData = async (typedCity) => {
-  const apiURL = `https://api.tomorrow.io/v4/weather/realtime?location=${typedCity}&apikey=${apiKey}&units=metric&lang=pt_br`;
-  const res = await fetch(apiURL);
-  const data = await res.json();
-  ShowData(data);
+  const apiURL1 = `https://api.tomorrow.io/v4/weather/realtime?location=${typedCity}&apikey=${apiKey}&units=metric&lang=pt_br`;
+  const apiURL2 = `https://api.openweathermap.org/data/2.5/weather?q=${typedCity}&appid=${apiKey2}&units=metric&lang=pt_br`;
+  const res1 = await fetch(apiURL1);
+  const res2 = await fetch(apiURL2);
+  const data1 = await res1.json();
+  const data2 = await res2.json();
+  ShowData(data1, data2);
 };
 
 btnSearch.on("click", () => {
   const typedCity = input.val();
-  console.log(typedCity);
   weatherData(typedCity);
 });

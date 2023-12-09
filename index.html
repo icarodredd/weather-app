@@ -14,40 +14,51 @@
   </head>
   <body>
     <div
-      class="modal modal-sheet position-static d-flex justify-content-center bg-body-secondary"
+      class="modal modal-sheet position-static d-flex justify-content-center"
       tabindex="-1"
       role="dialog"
       id="modalTour"
     >
       <div class="modal-dialog" role="document">
         <div class="modal-content rounded-4 shadow">
-          <div class="modal-body p-5">
+          <div class="modal-body p-5 justify-content-center text-center">
             <div class="input-group mb-3">
               <input
                 id="input"
                 type="text"
                 class="form-control"
-                placeholder="Seu local."
+                placeholder="Local."
               />
               <button
                 id="search"
                 class="btn btn-outline-secondary"
                 type="button"
               >
-                🔎
+                Search
               </button>
             </div>
             <h2 id="city" class="fw-bold">Campos Sales</h2>
 
             <ul class="d-grid list-unstyled small">
-              <li class="d-flex">
+              <li class="d-flex justify-content-center">
                 <div>
+                  <h6 id="type-of-weather">Nublado</h6>
                   <h6 id="celsius">33ºC</h6>
                 </div>
               </li>
             </ul>
             <div>
-              <img id="image" height="250" src="./images/cloudy.svg" alt="" />
+              <img
+                id="image"
+                height="250"
+                src="./images/cloudy.svg"
+                alt="Weather"
+              />
+            </div>
+            <div class="d-flex gap-4 justify-content-center mt-5">
+              <p id="humidity" class="fw-bold">Humidity: 79%</p>
+              <p class="fw-bold">|</p>
+              <p id="rain" class="fw-bold">Rain: 10%</p>
             </div>
           </div>
         </div>
@@ -57,7 +68,7 @@
     <div class="container">
       <footer class="d-flex flex-wrap justify-content-center">
         <div class="d-flex">
-          <span class="mb-3 text-body-secondary">© 2023 Company, Inc</span>
+          <span class="mb-3 text-body-secondary">© 2023 Dredd, Inc.</span>
         </div>
       </footer>
     </div>

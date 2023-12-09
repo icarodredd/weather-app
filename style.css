@@ -1,5 +1,22 @@
-.container,
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+
+h1,
+h2,
+h6,
+p,
+input,
+.btn,
+span {
+  font-family: "Rubik", sans-serif;
+}
+
 .modal,
 body {
-  background-color: #bdcdd6 !important;
+  background: rgb(96, 150, 180);
+  background: linear-gradient(
+    180deg,
+    rgba(96, 150, 180, 1) 0%,
+    rgba(147, 191, 207, 1) 35%,
+    rgba(189, 205, 214, 1) 100%
+  );
 }
