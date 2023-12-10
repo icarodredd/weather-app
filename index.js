@@ -6,16 +6,13 @@ const input = $("#input");
 const city = $("#city");
 const temperature = $("#celsius");
 const humidity = $("#humidity");
-const rain = $("#rain");
 const typeOfWeather = $("#type-of-weather");
 const img = $("#image");
 
-const changeImg = async (weather, rainProbability) => {
+const changeImg = async (weather) => {
   if (weather === "Clear") {
     img.attr("src", "./images/sun.svg");
   } else if (weather === "Clouds") {
-    img.attr("src", "./images/cloudy.svg");
-  } else if (rainProbability >= 50) {
     img.attr("src", "./images/cloudy.svg");
   }
 };
@@ -26,17 +23,15 @@ const ShowData = async (data1, data2) => {
   city.text(data1.location.name);
   const temp = Math.round(data1.data.values.temperature);
   temperature.text(temp + "ºC");
-  humidity.text(`Humidity: ${data1.data.values.humidity} %`);
-  const rainProbability = data1.data.values.precipitationProbability;
-  rain.text(`Rain: ${rainProbability} %`);
+  humidity.text(`Umidade: ${data1.data.values.humidity} %`);
   const weather = data2.weather[0].main;
   typeOfWeather.text(weather);
-  changeImg(weather, rainProbability);
+  changeImg(weather);
 };
 
 const weatherData = async (typedCity) => {
-  const apiURL1 = `https://api.tomorrow.io/v4/weather/realtime?location=${typedCity}&apikey=${apiKey}&units=metric&lang=pt_br`;
-  const apiURL2 = `https://api.openweathermap.org/data/2.5/weather?q=${typedCity}&appid=${apiKey2}&units=metric&lang=pt_br`;
+  const apiURL1 = `https://api.tomorrow.io/v4/weather/realtime?location=${typedCity}&apikey=${apiKey}&units=metric&lang=en`;
+  const apiURL2 = `https://api.openweathermap.org/data/2.5/weather?q=${typedCity}&appid=${apiKey2}&units=metric&lang=en`;
   const res1 = await fetch(apiURL1);
   const res2 = await fetch(apiURL2);
   const data1 = await res1.json();
