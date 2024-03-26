@@ -19,5 +19,3 @@ https://weather-app-silk-ten-21.vercel.app/
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-
-**
